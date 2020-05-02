@@ -75,7 +75,7 @@ fi
 echo -e "\nHiCCUPS:\n"
 if hash nvcc 2>/dev/null 
 then 
-    ${juicer_tools_path} hiccups ${hic_file_path} ${hic_file_path%.*}"_loops"
+    ${juicer_tools_path} hiccups --cpu ${hic_file_path} ${hic_file_path%.*}"_loops"
     if [ $? -ne 0 ]; then
 	echo "***! Problem while running HiCCUPS";
 	exit 1
