@@ -72,8 +72,8 @@ while getopts "d:g:hfs:S:b:D:" opt; do
 	d) topDir=$OPTARG ;;
 	s) site=$OPTARG ;;
 	b) ligation=$OPTARG ;;
-        D) juiceDir=$OPTARG ;;
-        f) exclude=0 ;;
+	D) juiceDir=$OPTARG ;;
+	f) exclude=0 ;;
 	S) stage=$OPTARG ;;
 	[?]) printHelpAndExit 1;;
     esac
@@ -113,10 +113,10 @@ fi
 if [ ! -z "$stage" ]
 then
     case $stage in
-        final) final=1 ;;
+	final) final=1 ;;
 	early) early=1 ;;
 	postproc) postproc=1 ;;
-        *)  echo "$usageHelp"
+	*)  echo "$usageHelp"
 	    echo "$stageHelp"
 	        exit 1
     esac
