@@ -35,7 +35,7 @@ printHelpAndExit() {
 }
 
 #set defaults
-genomeID="hg19"
+genomeID="mm10"
 hic_file_path="$(pwd)/aligned/inter_30.hic"
 # juicer_tools_path="/data/namekawa_hpc/local_programs/software/juicer_top_directory/my_juicer_directory/scripts/common/juicer_tools"
 
