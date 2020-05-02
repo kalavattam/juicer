@@ -78,9 +78,9 @@ juiceDir="/opt/juicer"
 # top level directory, can also be set in options
 topDir=$(pwd)
 # restriction enzyme, can also be set in options
-site="MboI"
+site="Arima"
 # genome ID, default to human, can also be set in options
-genomeID="hg19"
+genomeID="mm10"
 # normally both read ends are aligned with long read aligner; 
 # if one end is short, this is set                 
 shortreadend=0
