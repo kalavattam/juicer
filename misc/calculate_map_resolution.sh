@@ -49,9 +49,9 @@
 # created under that name, the script will not recreate it (and indeed will not
 # examine the first argument)
 
-# total size of genome, from http://genomewiki.ucsc.edu/index.php/Hg19_Genome_size_statistics
-# modify this number if your genome is not hg19
-total=3137161264
+# genome size: http://genomewiki.ucsc.edu/index.php/Mm10_Genome_size_statistics
+# modify this number if your genome is not mm10
+total=2730871774  # total=3137161264  # size for hg19 (also fr/genomewiki site)
 
 if [ "$#" -ne 2 ]
 then
