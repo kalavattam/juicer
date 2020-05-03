@@ -40,8 +40,8 @@
 # removes PCR duplicates, and creates the hic job and stats job.  Final
 # product will be hic file and stats file in the aligned directory.
 #                                                                       
-# [topDir]/fastq  - Should contain the fastq files. This code assumes that
-#                   there is an "_R" in the appropriate files, i.e. *_R*.fastq
+# [topDir]/fastq  - Should contain the fastq files. This code has been edited
+#                   to assume there is an "*_*.fastq*" in the appropriate files
 # From the top-level directory, the following two directories are created:
 #                                                                              
 # [topDir]/splits  - Where to write the scratch split files (fastq files and
@@ -258,7 +258,7 @@ fi
 ## Directories to be created and regex strings for listing files
 splitdir=${topDir}"/splits"
 donesplitdir=$topDir"/done_splits"
-fastqdir=${topDir}"/fastq/*_R*.fastq*"
+fastqdir=${topDir}"/fastq/*_*.fastq*"  # fastqdir=${topDir}"/fastq/*_R*.fastq*"
 outputdir=${topDir}"/aligned"
 tmpdir=${topDir}"/HIC_tmp"
 
