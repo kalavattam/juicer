@@ -1,0 +1,2 @@
+* mm10_chrom_sizes_negspy.txt from here: [https://github.com/pkerpedjiev/negspy/blob/master/negspy/data/mm10/chromInfo.txt](https://github.com/pkerpedjiev/negspy/blob/master/negspy/data/mm10/chromInfo.txt)
+* mm10_chrom_sizes_UCSC.txt from here [http://hgdownload.cse.ucsc.edu/goldenPath/mm10/bigZips/mm10.chrom.sizes](http://hgdownload.cse.ucsc.edu/goldenPath/mm10/bigZips/mm10.chrom.sizes)
