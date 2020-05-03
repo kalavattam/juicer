@@ -67,8 +67,8 @@ juicer_version="1.5.7"
 
 # fastq files should look like filename_R1.fastq and filename_R2.fastq 
 # if your fastq files look different, change this value
-read1str="_R1" 
-read2str="_R2" 
+read1str="_1" 
+read2str="_2" 
 
 ## Default options, overridden by command line arguments
 
@@ -146,7 +146,7 @@ while getopts "d:g:R:a:hrs:p:y:z:S:D:fjt:b:" opt; do
 	D) juiceDir=$OPTARG ;;
 	f) nofrag=0 ;; #use fragment maps
 	b) ligation=$OPTARG ;;
-        t) threads=$OPTARG ;;
+    t) threads=$OPTARG ;;
 	j) justexact=1 ;;
 	[?]) printHelpAndExit 1;;
     esac
@@ -159,7 +159,7 @@ then
         dedup) dedup=1 ;;
         early) earlyexit=1 ;;
         final) final=1 ;;
-	postproc) postproc=1 ;; 
+	    postproc) postproc=1 ;; 
         *)  echo "$usageHelp"
 	    echo "$stageHelp"
 	    exit 1
