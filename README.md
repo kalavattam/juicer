@@ -27,13 +27,13 @@ Distribution
 In this repository, we include the scripts for running Juicer on AWS, LSF,
 Univa Grid Engine, SLURM, and a single CPU
 
-/AWS - scripts for running pipeline and postprocessing on AWS
+~~/AWS - scripts for running pipeline and postprocessing on AWS~~
 
-/UGER - scripts for running pipeline and postprocessing on UGER (Univa)
+~~/UGER - scripts for running pipeline and postprocessing on UGER (Univa)~~
 
-/SLURM - scripts for running pipeline and postprocessing on SLURM
+~~/SLURM - scripts for running pipeline and postprocessing on SLURM~~
 
-/LSF - scripts for running pipeline and postprocessing on LSF **BETA**
+~~/LSF - scripts for running pipeline and postprocessing on LSF **BETA**~~
 
 /CPU - scripts for running pipeline and postprocessing on a single CPU **BETA**
 
