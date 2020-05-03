@@ -24,8 +24,8 @@ For FAQs, or for asking new questions, please see our forum: [aidenlab.org/forum
 Distribution
 ------------
 
-In this repository, we include the scripts for running Juicer on AWS, LSF,
-Univa Grid Engine, SLURM, and a single CPU
+In this repository, we include the scripts for running Juicer on ~~AWS, LSF,
+Univa Grid Engine, SLURM, and~~ a single CPU
 
 ~~/AWS - scripts for running pipeline and postprocessing on AWS~~
 
