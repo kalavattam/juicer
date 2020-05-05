@@ -263,7 +263,7 @@ fi
 ## Directories to be created and regex strings for listing files
 splitdir=${topDir}"/splits"
 donesplitdir=$topDir"/done_splits"
-fastqdir=${topDir}"/fastq/*_R*.fastq*"
+fastqdir=${topDir}"/fastq/*_R?.f*"  #TODO Test(s) for files w/o 'R' and/or named '*.fq*', etc.
 outputdir=${topDir}"/aligned"
 tmpdir=${topDir}"/HIC_tmp"
 
