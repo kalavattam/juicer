@@ -24,7 +24,7 @@
 ##########
 # Juicer postprocessing script.
 # This will run the major post-processing on the HiC file, including finding
-# loops with HiCCUPs, finding motifs of these loops with MotifFinder, and
+# loops with HiCCUPS, finding motifs of these loops with MotifFinder, and
 # finding contact domains with Arrowhead.
 # Juicer version 1.5
 
