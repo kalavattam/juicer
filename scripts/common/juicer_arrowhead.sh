@@ -34,7 +34,7 @@ printHelpAndExit() {
     exit $1
 }
 
-#set defaults
+## Set defaults
 genomeID="mm10"
 hic_file_path="$(pwd)/aligned/inter_30.hic"
 # juicer_tools_path="/data/namekawa_hpc/local_programs/software/juicer_top_directory/my_juicer_directory/scripts/common/juicer_tools"
@@ -60,6 +60,7 @@ if [ ! -e "${hic_file_path}" ]; then
   exit 1;
 fi
 
+## Run ARROWHEAD
 echo -e "${juicer_tools_path} is post-processing Hi-C for ${genomeID}\nData read from ${hic_file_path}.\n"
 echo -e "ARROWHEAD:\n"
 ${juicer_tools_path} arrowhead ${hic_file_path} ${hic_file_path%.*}"_contact_domains"

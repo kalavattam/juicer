@@ -34,7 +34,7 @@ printHelpAndExit() {
     exit $1
 }
 
-#set defaults
+## Set defaults
 genomeID="mm10"
 hic_file_path="$(pwd)/aligned/inter_30.hic"
 # juicer_tools_path="/data/namekawa_hpc/local_programs/software/juicer_top_directory/my_juicer_directory/scripts/common/juicer_tools"
@@ -63,18 +63,28 @@ if [ ! -e "${hic_file_path}" ]; then
   exit 1;
 fi
 
+## Run GPU HiCCUPS
+# echo -e "\nHiCCUPS:\n"
+# if hash nvcc 2>/dev/null 
+# then 
+#     ${juicer_tools_path} hiccups --ignore-sparsity ${hic_file_path} ${hic_file_path%.*}"_loops"
+#     if [ $? -ne 0 ]; then
+# 	echo "***! Problem while running HiCCUPS";
+# 	exit 1
+#     fi
+# else 
+#     echo "GPUs are not installed so HiCCUPS cannot be run";
+# fi
+
+## Run CPU HiCCUPS
 echo -e "\nHiCCUPS:\n"
-if hash nvcc 2>/dev/null 
-then 
-    ${juicer_tools_path} hiccups ${hic_file_path} ${hic_file_path%.*}"_loops"
-    if [ $? -ne 0 ]; then
-	echo "***! Problem while running HiCCUPS";
-	exit 1
-    fi
-else 
-    echo "GPUs are not installed so HiCCUPs cannot be run";
+${juicer_tools_path} hiccups --cpu --ignore-sparsity ${hic_file_path} ${hic_file_path%.*}"_loops"
+if [ $? -ne 0 ]; then
+    echo "***! Problem while running HiCCUPS";
+    exit 1
 fi
 
+## Run APA
 if [ -e ${hic_file_path%.*}"_loops" ]
 then
     echo -e "\nAPA:\n"
