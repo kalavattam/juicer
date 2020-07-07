@@ -23,7 +23,7 @@
 #  THE SOFTWARE.
 ##########
 # Deduping script, checks that positions are within wobble or not
-# Juicer version 1.5
+# Juicer version 1.6
 # Returns absolute value of v
 function abs(v) {
 	return v<0?-v:v;

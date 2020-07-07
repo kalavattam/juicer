@@ -25,7 +25,7 @@
 
 # Helper script for finding what files successfully aligned and preparing the directory for
 # rerunning juicer.sh
-# Juicer version 1.5
+# Juicer version 1.6
 ls -l splits > ls_splits
 
 awk '($9 ~/_R1/ && $9 ~/fastq$/) || ($9 ~/_R1/ && $9 ~/gz$/) {split($9, a, "_R1");  print a[1]a[2], $9}($9 ~/_R2/ && $9 ~/fastq$/) || ($9 ~/_R2/ && $9 ~/gz$/){split($9,a,"_R2");print a[1]a[2], $9}' ls_splits > fastq.txt

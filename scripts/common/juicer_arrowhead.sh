@@ -24,7 +24,7 @@
 ##########
 # Juicer postprocessing script.
 # This will find contact domains with Arrowhead.
-# Juicer 1.5
+# Juicer 1.6
 
 ## Read arguments
 usageHelp="Usage: ${0} [-h] -j <juicer_tools_file_path> -i <hic_file_path>"
@@ -35,7 +35,7 @@ printHelpAndExit() {
 }
 
 ## Set defaults
-genomeID="mm10"
+genomeID="mm10"  # Divergence from the ELA lab: default to the mouse genome 
 hic_file_path="$(pwd)/aligned/inter_30.hic"
 # juicer_tools_path="/data/namekawa_hpc/local_programs/software/juicer_top_directory/my_juicer_directory/scripts/common/juicer_tools"
 

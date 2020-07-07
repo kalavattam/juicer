@@ -25,7 +25,7 @@
 # Juicer postprocessing script.
 # This will run the major post-processing on the HiC file, including finding
 # loops with HiCCUPS and inding motifs of these loops with MotifFinder.
-# Juicer 1.5
+# Juicer 1.6  # Many divergences fr/ELA Lab
 ## Read arguments
 usageHelp="Usage: ${0} [-h] -j <juicer_tools_file_path> -i <hic_file_path> -m <bed_file_dir> -g <genome ID>"
 
@@ -34,7 +34,7 @@ printHelpAndExit() {
     exit $1
 }
 
-## Set defaults
+## Set defaults  # File location-based divergence fr/ELA Lab; genome default is changed too...
 genomeID="mm10"
 hic_file_path="$(pwd)/aligned/inter_30.hic"
 # juicer_tools_path="/data/namekawa_hpc/local_programs/software/juicer_top_directory/my_juicer_directory/scripts/common/juicer_tools"

@@ -23,7 +23,7 @@
 #  THE SOFTWARE.
 ##########
 # Helper script for taking in multiple inter.txt and producing sums
-# Juicer version 1.5
+# Juicer version 1.6
 $1=="Sequenced"{
 gsub(/,/,"",$4);
  total=total+$4;
@@ -62,5 +62,5 @@ END{
  printf(" %s %'d (%0.2f%)\n", "Alignable (Normal+Chimeric Paired):", alignable, alignable*100/total);
  printf("%s %'d\n", "Unique Reads:", dedup);
  printf("%s %'d\n", "PCR Duplicates:", dups);
-  printf("%s %'d\n", "Optical Duplicates:", optdups);
+ printf("%s %'d\n", "Optical Duplicates:", optdups);
 }

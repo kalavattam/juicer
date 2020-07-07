@@ -45,7 +45,7 @@
 # restriction enzyme site.
 #
 # Usage:	statistics.pl [infile or stream]
-# Juicer 1.5
+# Juicer 1.6
 
 use File::Basename;
 use POSIX;

@@ -26,7 +26,7 @@
 # This will run the major post-processing on the HiC file, including finding
 # loops with HiCCUPS, finding motifs of these loops with MotifFinder, and
 # finding contact domains with Arrowhead.
-# Juicer version 1.5
+# Juicer version 1.6  # Divergence from the ELA Lab
 
 ## Read arguments
 usageHelp="Usage: ${0} [-h] -j <juicer_tools_file_path> -i <hic_file_path> -m <bed_file_dir> -g <genome ID>"

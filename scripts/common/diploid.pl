@@ -35,7 +35,7 @@
 # These files can be created using the script vcftotxt.awk from a phased VCF file
 #
 # Usage:	diploid.pl -s [chr_pos site file] -o [paternal_maternal SNP file] [infile or stream]
-# Juicer version 1.5
+# Juicer version 1.6
 use File::Basename;
 use POSIX;
 use List::Util qw[min max];

@@ -25,7 +25,7 @@
 # Takes a SAM file, looks for interesting abnormal chimeric reads.
 # only those reads mapped to chromosomes 1-24 with MAPQ >= 10, and
 # with at least a triple where the minimum distance >= 20Kb
-# Juicer version 1.5
+# Juicer version 1.6
 function abs(v) {
     return v<0?-v:v;
 }
