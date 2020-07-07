@@ -5,7 +5,7 @@
 #  LSF submission parameters:
 #BSUB -W 8:00
 #BSUB -n 1
-#BSUB -M 8000
+#BSUB -M 5000
 #BSUB -R "span[hosts=1]"
 #BSUB -e bwa_index_fa.sh.%J.err
 #BSUB -o bwa_index_fa.sh.%J.out
