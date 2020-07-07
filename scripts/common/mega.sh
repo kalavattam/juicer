@@ -36,9 +36,10 @@ juicer_version="1.5.7"
 # top level directory, can also be set in options
 topDir=$(pwd)
 # restriction enzyme, can also be set in options
-site="Arima"
+
+site="Arima"  # Divergence from ELA Lab: set default to Arima RE cocktail
 # genome ID, default to human, can also be set in options
-genomeID="mm10"
+genomeID="mm10"  # Divergence from ELA Lab: set default genome to mouse
 # Juicer directory, contains scripts/, references/, and restriction_sites/
 # can also be set in options via -D 
 juiceDir="/aidenlab"
@@ -79,21 +80,21 @@ while getopts "d:g:hfs:S:b:D:" opt; do
     esac
 done
 
-## Set ligation junction based on restriction enzyme
-if [ -z "$ligation" ]
-then
+## Set ligation junction based on restriction enzyme  # Divergence from ELA Lab here: including ligation junctions from Arima RE cocktail, NcoI RE, and treatment with HindIII and MboI/DpnII REs...
+if [ -z "$ligation" ]; then
+
     case $site in
 	HindIII) ligation="AAGCTAGCTT";;
 	DpnII) ligation="GATCGATC";;
 	MboI) ligation="GATCGATC";;
-	NcoI) ligation="CCATGCATGG";;
-	MboI+HindIII) ligation="'(GATCGATC|AAGCTAGCTT)'";;
-	Arima) ligation="'(GAATAATC|GAATACTC|GAATAGTC|GAATATTC|GAATGATC|GACTAATC|GACTACTC|GACTAGTC|GACTATTC|GACTGATC|GAGTAATC|GAGTACTC|GAGTAGTC|GAGTATTC|GAGTGATC|GATCAATC|GATCACTC|GATCAGTC|GATCATTC|GATCGATC|GATTAATC|GATTACTC|GATTAGTC|GATTATTC|GATTGATC)'";;
+    NcoI) ligation="CCATGCATGG";;
+    MboI+HindIII) ligation="'(GATCGATC|AAGCTAGCTT)'";;
+    Arima) ligation="'(GAATAATC|GAATACTC|GAATAGTC|GAATATTC|GAATGATC|GACTAATC|GACTACTC|GACTAGTC|GACTATTC|GACTGATC|GAGTAATC|GAGTACTC|GAGTAGTC|GAGTATTC|GAGTGATC|GATCAATC|GATCACTC|GATCAGTC|GATCATTC|GATCGATC|GATTAATC|GATTACTC|GATTAGTC|GATTATTC|GATTGATC)'";;
 	none) ligation="XXXX";;
 	*)  ligation="XXXX"
 	    site_file=$site
-	    echo "$site not listed as recognized enzyme. Using $site_file as site file"
-	    echo "Ligation junction is undefined"
+	    echo "$site not listed as recognized enzyme. Using $site_file as site file."
+	    echo "Ligation junction is undefined";;
     esac
 fi
 

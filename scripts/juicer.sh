@@ -210,7 +210,7 @@ if [ ! -e "${refSeq}.bwt" ]; then
 
 fi
 
-## Set ligation junction based on restriction enzyme
+## Set ligation junction based on restriction enzyme  # Divergence fr/ELA lab here: including option for detecting ligation junctions fr/treatment w/both HindIII and MboI/DpnII 
 if [ -z "$ligation" ]
 then
     case $site in
@@ -218,7 +218,7 @@ then
 	DpnII) ligation="GATCGATC";;
 	MboI) ligation="GATCGATC";;
 	NcoI) ligation="CCATGCATGG";;
-
+    MboI+HindIII) ligation="'(GATCGATC|AAGCTAGCTT)'";;
 	Arima) ligation="'(GAATAATC|GAATACTC|GAATAGTC|GAATATTC|GAATGATC|GACTAATC|GACTACTC|GACTAGTC|GACTATTC|GACTGATC|GAGTAATC|GAGTACTC|GAGTAGTC|GAGTATTC|GAGTGATC|GATCAATC|GATCACTC|GATCAGTC|GATCATTC|GATCGATC|GATTAATC|GATTACTC|GATTAGTC|GATTATTC|GATTGATC)'";;
 	none) ligation="XXXX";;
 	*)  ligation="XXXX"

@@ -25,7 +25,7 @@
 #
 # Sanity check once pipeline is complete to be sure number of lines adds up, deduping
 # proceeded appropriately, and that files were created
-# Juicer version 1.5
+# Juicer version 1.6
 
 # Start by checking the statistics to see if they add up 
 res1=`cat ${splitdir}/*norm*res*`
