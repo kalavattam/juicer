@@ -23,4 +23,4 @@ printf "${SCRIPT_NAME} run by `whoami` on `date` in\n`pwd`\n\n" >> ${LOG} 2>&1
 printf "`bwa`\n\n" >> ${LOG} 2>&1
 
 #  Index database sequences in FASTA format
-bwa index -p mm10 -a bwtsw ${FILE}
+bwa index -p ${FILE} -a bwtsw ${FILE}
