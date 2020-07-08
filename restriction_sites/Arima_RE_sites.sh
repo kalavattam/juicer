@@ -18,7 +18,7 @@ SCRIPT_NAME=Arima_RE_sites.sh
 WORKDIR="/data/namekawa_hpc/HiC_TBR/code_etc"  # Can change via hard coding
          
 #  Load necessary CCHMC LSF module
-module load python3/3.7.1  # However, should work with Python 2 too
+module load python3/3.7.1  # However, should work with Python 2.7 too
 
 #  Record the experiment info
 printf "${SCRIPT_NAME} run by `whoami` on `date` in\n`pwd`\n\n"
