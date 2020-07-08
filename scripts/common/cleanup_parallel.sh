@@ -39,13 +39,10 @@ total=`ls -l aligned/merged_sort.txt | awk '{print $5}'`
 total2=`ls -l aligned/merged_nodups.txt aligned/dups.txt aligned/opt_dups.txt | awk '{sum = sum + $5}END{print sum}'`
 
 if [ $total -eq $total2 ]; then
-    parallel --jobs 2 < commands.txt
+    parallel -k --jobs 2 < commands.txt
     testname=$(ls -l fastq | awk 'NR==1{print $9}')
     if [ "${testname: -5}" == ".fastq" ]; then
-        for i in fastq/*.fastq; do
-            parallel --jobs 2 'echo "gzip {}"' ::: $i
-            parallel --jobs 2 'gzip {}' ::: $i
-        done
+        parallel -k --jobs 2 'gzip {}' ::: `find -L . -name '*.fastq' -type f`
     fi
 else 
     echo "Problem: The sum of merged_nodups.txt, dups.txt, and opt_dups.txt is not the same size as merged_sort.txt."
