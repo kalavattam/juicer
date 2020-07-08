@@ -4,8 +4,9 @@
 #  KA
 #  2020-0708
 
-PARENT_PATH=`printf "%b" "${PWD%/*}"`
-PARENT_DIR=`printf "%b" "${PARENT_DIR##*/}"`
+PARENT_DIR=$(dirname `pwd` | xargs basename)
+
+echo "The parent directory is ${PARENT_DIR}"
 
 find . -name '*' -type f -print0 | parallel -0 --keep-order echo "mv {/} ${PARENT_DIR}_{/}"
 find . -name '*' -type f -print0 | parallel -0 --keep-order mv {/} ${PARENT_DIR}_{/}
