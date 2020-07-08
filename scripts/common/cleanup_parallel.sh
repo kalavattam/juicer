@@ -26,14 +26,14 @@
 # sure the pipeline ran successfully.  Run from top directory (HIC001 e.g.).
 # Juicer version 1.6
 
-cat <<< 'rm aligned/merged_sort.txt
-rm -r splits
-gzip aligned/merged_nodups.txt
-gzip aligned/dups.txt
-gzip aligned/opt_dups.txt
-gzip aligned/abnormal.sam
-gzip aligned/collisions.txt
-gzip aligned/unmapped.sam' > commands.txt
+cat <<< 'echo "Remove aligned/merged_sort.txt." && rm aligned/merged_sort.txt
+echo "Remove splits." && rm -r splits
+echo "Zip up aligned/merged_nodups.txt." && gzip aligned/merged_nodups.txt
+echo "Zip up aligned/dups.txt." && gzip aligned/dups.txt
+echo "Zip up aligned/opt_dups.txt." && gzip aligned/opt_dups.txt
+echo "Zip up aligned/abnormal.txt." && gzip aligned/abnormal.sam
+echo "Zip up aligned/collisions.txt." && gzip aligned/collisions.txt
+echo "Zip up aligned/unmapped.txt." && gzip aligned/unmapped.sam' > commands.txt
 
 total=`ls -l aligned/merged_sort.txt | awk '{print $5}'`
 total2=`ls -l aligned/merged_nodups.txt aligned/dups.txt aligned/opt_dups.txt | awk '{sum = sum + $5}END{print sum}'`
@@ -42,6 +42,7 @@ if [ $total -eq $total2 ]; then
     parallel -k --jobs 2 < commands.txt
     testname=$(ls -l fastq | awk 'NR==1{print $9}')
     if [ "${testname: -5}" == ".fastq" ]; then
+        echo "Zip up .fastq files."
         parallel -k --jobs 2 'gzip {}' ::: `find -L . -name '*.fastq' -type f`
     fi
 else 
