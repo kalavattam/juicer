@@ -24,18 +24,10 @@ For FAQs, or for asking new questions, please see our forum: [aidenlab.org/forum
 Distribution
 ------------
 
-In this repository, we include the scripts for running Juicer on ~~AWS, LSF,
-Univa Grid Engine, SLURM, and~~ a single CPU
+In this repository, we include the scripts for running Juicer. These scripts are--or are
+derived from or based on--single-CPU code written and maintained by [the Aiden Lab](https://github.com/theaidenlab/juicer)
 
-~~/AWS - scripts for running pipeline and postprocessing on AWS~~
-
-~~/UGER - scripts for running pipeline and postprocessing on UGER (Univa)~~
-
-~~/SLURM - scripts for running pipeline and postprocessing on SLURM~~
-
-~~/LSF - scripts for running pipeline and postprocessing on LSF **BETA**~~
-
-/CPU - scripts for running pipeline and postprocessing on a single CPU **BETA**
+/scripts - scripts for running pipeline and postprocessing on a single CPU **BETA**
 
 /misc - miscellaneous helpful scripts
 
@@ -109,54 +101,44 @@ Quick Start
 Run the Juicer pipeline on your cluster of choice with "juicer.sh [options]"
 
 ```
-Usage: juicer.sh [-g genomeID] [-d topDir] [-q queue] [-l long queue] [-s site]
-                 [-a about] [-R end] [-S stage] [-p chrom.sizes path]
-                 [-y restriction site file] [-z reference genome file]
-                 [-C chunk size] [-D Juicer scripts directory]
-                 [-Q queue time limit] [-L long queue time limit] [-r] [-h] [-x]
-* [genomeID] must be defined in the script, e.g. "hg19" or "mm10" (default
-  "hg19"); alternatively, it can be defined using the -z command
+Usage: juicer.sh [-g genomeID] [-d topDir] [-s site] [-a about] 
+                 [-S stage] [-p chrom.sizes path] [-y restriction site file]
+                 [-z reference genome file] [-D Juicer scripts directory]
+                 [-b ligation] [-t threads] [-h] [-f] [-j]
+* [genomeID] must be defined in the script, e.g. "hg19" or "mm10" (default 
+  "mm10"); alternatively, it can be defined using the -z command
 * [topDir] is the top level directory (default
-  "/Users/nchernia/Downloads/neva-muck/UGER")
+  "/Users/ala1zp/Dropbox/professional/_experiments_projects/2020_0430_0500_HiC_TBR/code_etc/juicer")
      [topDir]/fastq must contain the fastq files
      [topDir]/splits will be created to contain the temporary split files
      [topDir]/aligned will be created for the final alignment
-* [queue] is the queue for running alignments (default "short")
-* [long queue] is the queue for running longer jobs such as the hic file
-  creation (default "long")
-* [site] must be defined in the script, e.g.  "HindIII" or "MboI"
-  (default "MboI")
+* [site] must be defined in the script, e.g.  "HindIII" or "MboI" 
+  (default "none")
 * [about]: enter description of experiment, enclosed in single quotes
-* -r: use the short read version of the aligner, bwa aln
-  (default: long read, bwa mem)
-* [end]: use the short read aligner on read end, must be one of 1 or 2
 * [stage]: must be one of "merge", "dedup", "final", "postproc", or "early".
-    -Use "merge" when alignment has finished but the merged_sort file has not
-     yet been created.
-    -Use "dedup" when the files have been merged into merged_sort but
-     merged_nodups has not yet been created.
-    -Use "final" when the reads have been deduped into merged_nodups but the
-     final stats and hic files have not yet been created.
-    -Use "postproc" when the hic files have been created and only
-     postprocessing feature annotation remains to be completed.
-    -Use "early" for an early exit, before the final creation of the stats and
-     hic files
+    - Use "merge" when alignment has finished but the merged_sort file has not
+      yet been created.
+    - Use "dedup" when the files have been merged into merged_sort but
+      merged_nodups has not yet been created.
+    - Use "final" when the reads have been deduped into merged_nodups but the
+      final stats and hic files have not yet been created.
+    - Use "postproc" when the hic files have been created and only
+      postprocessing feature annotation remains to be completed.
+    - Use "early" for an early exit, before the final creation of the stats and
+      hic files
 * [chrom.sizes path]: enter path for chrom.sizes file
 * [restriction site file]: enter path for restriction site file (locations of
   restriction sites in genome; can be generated with the script
-  (misc/generate_site_positions.py) )
+  misc/generate_site_positions.py)
 * [reference genome file]: enter path for reference sequence file, BWA index
   files must be in same directory
-* [chunk size]: number of lines in split files, must be multiple of 4
-  (default 90000000, which equals 22.5 million reads)
 * [Juicer scripts directory]: set the Juicer directory,
   which should have scripts/ references/ and restriction_sites/ underneath it
-  (default /broad/aidenlab)
-* [queue time limit]: time limit for queue, i.e. -W 12:00 is 12 hours
-  (default 1200)
-* [long queue time limit]: time limit for long queue, i.e. -W 168:00 is one week
-  (default 3600)
-* -x: exclude fragment-delimited maps from hic file creation
+  (default /opt/juicer)
+* [ligation junction]: use this string when counting ligation junctions
+* [threads]: number of threads when running BWA alignment and juicer_tools.jar
+  (TODO check/clean up code to call the jar with multiple CPU threads)
+* -f: include fragment-delimited maps in hic file creation
 * -h: print this help and exit
 ```
 
@@ -167,8 +149,6 @@ Juicer Usage
 - **Providing a genome ID**: if not defined in the script, you can either directly modify the script or provide the script with the files needed. You would provide the script with the files needed via "-z reference_sequence_path" (needs to have the BWA index files in same directory), "-p chrom_sizes_path" (these are the chromosomes you want included in .hic file), and "-s site_file" (this is the listing of all the restriction site locations, one line per chromosome). Note that ligation junction won't be defined in this case.  The script (misc/generate_site_positions.py) can help you generate the file
 - **Providing a restriction enzyme**: if not defined in the script, you can either directly modify the script or provide the files needed via the "-s site_file" flag, as above.  Alternatively, if you don't want to do any fragment-level analysis (as with a DNAse experiment), you should assign the site "none", as in `juicer.sh -s none`
 - **Directory structure**: Juicer expects the fastq files to be stored in a directory underneath the top-level directory. E.g. HIC001/fastq.  By default, the top-level directory is the directory where you are when you launch Juicer; you can change this via the -d flag. Fastqs can be zipped. [topDir]/splits will be created to contain the temporary split files and should be deleted once your run is completed.  [topDir]/aligned will be created for the final files, including the hic files, the statistics, the valid pairs (merged_nodups), the collisions, and the feature annotations.
-- **Queues** are complicated and it's likely that you'll have to modify the script for your system, though we did our best to avoid this.  By default there's a short queue and a long queue.  We also allow you to pass in wait times for those queues; this is currently ignored by the UGER and SLURM versions.  The short queue should be able to complete alignment of one split file.  The long queue is for jobs that we expect to take a while, like writing out the merged_sort file
-- **Chunk size** is intimitely associated with your queues; a smaller chunk size means more alignment jobs that complete in a faster time.  If you have a hard limit on the number of jobs, you don't want too small of a chunk size.  If your short queue has a very limited runtime ceiling, you don't want too big of a chunk size.  Run time for alignment will also depend on the particulars of your cluster.  We launch ~5 jobs per chunk.  Chunk size must be a multiple of 4.
 -  **Relaunch** via the same script. Type `juicer.sh [options] -S stage` where "stage" is one of merge, dedup, final, postproc, or early. "merge" is for when alignment has finished but merged_sort hasn't been created; "dedup" is for when merged_sort is there but not merged_nodups (this will relaunch all dedup jobs); "final" is for when merged_nodups is there and you want the stats and hic files; "postproc" is for when you have the hic files and just want feature annotations; and "early" is for early exit, before hic file creation. If your jobs failed at the alignment stage, run `relaunch_prep.sh` and then run juicer.sh.
 - **Miscelleaneous options** include -a 'experiment description', which will add the experiment description to the statistics file and the meta data in the hic file; -r, which allows you to use bwa aln instead of bwa mem, useful for shorter reads; -R [end], in case you have one read end that's short and one that's long and you want to align the short end with bwa aln and the long end with bwa mem; and -D [Juicer scripts directory], to set an alternative Juicer directory; must have scripts/, references/, and restriction_sites/ underneath it
 
