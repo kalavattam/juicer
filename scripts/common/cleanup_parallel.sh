@@ -33,6 +33,8 @@ echo "Zip up aligned/dups.txt." && gzip aligned/dups.txt
 echo "Zip up aligned/opt_dups.txt." && gzip aligned/opt_dups.txt
 echo "Zip up aligned/abnormal.txt." && gzip aligned/abnormal.sam
 echo "Zip up aligned/collisions.txt." && gzip aligned/collisions.txt
+echo "Zip up aligned/collisions_dups.txt." && gzip aligned/collisions_dups.txt
+echo "Zip up aligned/collisions_nodups.txt." && gzip aligned/collisions_nodups.txt
 echo "Zip up aligned/unmapped.txt." && gzip aligned/unmapped.sam' > commands.txt
 
 total=`ls -l aligned/merged_sort.txt | awk '{print $5}'`
