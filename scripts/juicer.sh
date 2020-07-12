@@ -498,7 +498,7 @@ then
 	fi                              
         # sort by chromosome, fragment, strand, and position  # TODO test/clean up parallelization
 	# sort -T $tmpdir -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n $name${ext}.frag.txt > $name${ext}.sort.txt
-	sort -T $tmpdir --parallel="$threads" -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n $name${ext}.frag.txt > $name${ext}.sort.txt
+	sort -T $tmpdir -S 90% --parallel="$threads" -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n $name${ext}.frag.txt > $name${ext}.sort.txt
     if [ $? -ne 0 ]
 	then
             echo "***! Failure during sort of $name${ext}"
@@ -517,7 +517,7 @@ then
         mv $donesplitdir/* $splitdir/.
     fi
     # if ! sort -T $tmpdir -m -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n $splitdir/*.sort.txt  > $outputdir/merged_sort.txt
-    if ! sort -T $tmpdir --parallel="$threads" -m -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n $splitdir/*.sort.txt  > $outputdir/merged_sort.txt
+    if ! sort -T $tmpdir -S 90% --parallel="$threads" -m -k2,2d -k6,6d -k4,4n -k8,8n -k1,1n -k5,5n -k3,3n $splitdir/*.sort.txt  > $outputdir/merged_sort.txt
     then 
         echo "***! Some problems occurred somewhere in creating sorted align files."
         exit 1
